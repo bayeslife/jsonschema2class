@@ -1,0 +1,319 @@
+{
+  "title": "Command",
+  "description": "",
+  "javaType": "nz.co.iag.model.consumer.json.Command",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "definitions": {
+    "CommandStatus": {
+      "title": "CommandStatus",
+      "description": " PENDING[The processor has not completed processing of the command], ERROR[The command processor indicates it was not able to complete processing of the command], COMPLETE[The command processor has completed processing of the command],",
+      "javaType": "nz.co.iag.model.consumer.json.CommandStatus",
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "string",
+      "additionalProperties": false,
+      "additionalItems": false,
+      "properties": {
+        "links": {
+          "title": "Links from CommandStatus"
+        }
+      },
+      "enum": [
+        "PENDING",
+        "ERROR",
+        "COMPLETE"
+      ]
+    },
+    "Resource": {
+      "title": "Resource",
+      "description": "A resource is an entity with an independent life cycle from other entities.  The concept is taken from REST but is similar to the Aggregate Business Entity of the TmForum SID and also from <a href=\"http://martinfowler.com/bliki/DDD_Aggregate.html\"><font color=\"#0563c1\"><u>http://martinfowler.com/bliki/DDD_Aggregate.html</u></font></a>and <a href=\"https://vaughnvernon.co/?p=879\"><font color=\"#0563c1\"><u>https://vaughnvernon.co/?p=879</u></font></a> ROADSIDE_ASSISTANCE_REQUEST[This is a request for roadside assist for any direct line of business brand.], CLAIM, QUOTE_DOCUMENT, CUSTOMER, PERSON_CONTACT, ANY[Any resource], POLICY_PAYMENT, CONTENT[Content which is shared between a customer and the IAG business.\r\nThis is equivalent to CommunicationContent in the IAGIAA model.], ACCOUNT, PAYMENT[A transfer of money between two party's or between two money repositories of the same party. A payment could be made either by the modelled organisation or by a third party. For example a premium contribution of EUR 100 for the payment of the term life packaged with a mortgage. Another example would be an individual benefit payment of EUR 1000 made by Soar Insurance Corp in settlement of an invalidity claim of EUR 1000 per month. ], PROVIDER_AGREEMENT_REQUEST[A request for a change on an existing provider agreemen or a request for issuing a new one, or a request for executing a transaction or service according to the terms and conditions of a provider agreement. A request may be initiated by the provider or by the modelled organisation.], QUOTE, POLICY_PAYMENT_ALLOCATION_FAILURE, SYNTHETIC_TRANSACTION[A transaction generated synthetically only to be used for application service monitoring\r\n],",
+      "javaType": "nz.co.iag.model.consumer.json.Resource",
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "string",
+      "additionalProperties": false,
+      "additionalItems": false,
+      "properties": {
+        "links": {
+          "title": "Links from Resource"
+        }
+      },
+      "enum": [
+        "ROADSIDE_ASSISTANCE_REQUEST",
+        "CLAIM",
+        "QUOTE_DOCUMENT",
+        "CUSTOMER",
+        "PERSON_CONTACT",
+        "ANY",
+        "POLICY_PAYMENT",
+        "CONTENT",
+        "ACCOUNT",
+        "PAYMENT",
+        "PROVIDER_AGREEMENT_REQUEST",
+        "QUOTE",
+        "POLICY_PAYMENT_ALLOCATION_FAILURE",
+        "SYNTHETIC_TRANSACTION"
+      ]
+    },
+    "RequestPatternType": {
+      "title": "RequestPatternType",
+      "description": " ASYNCHRONOUS_REQUEST[Do not wait for a reply from the provider.], SYNCHRONOUS_REQUEST_RESPONSE[Wait for a reply for a configured period of time.],",
+      "javaType": "nz.co.iag.model.consumer.json.RequestPatternType",
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "string",
+      "additionalProperties": false,
+      "additionalItems": false,
+      "properties": {
+        "links": {
+          "title": "Links from RequestPatternType"
+        }
+      },
+      "enum": [
+        "ASYNCHRONOUS_REQUEST",
+        "SYNCHRONOUS_REQUEST_RESPONSE"
+      ]
+    },
+    "Method": {
+      "title": "Method",
+      "description": " CREATE[This indicates the resource should be or has to be created.], DELETE, UPDATE, READ,",
+      "javaType": "nz.co.iag.model.consumer.json.Method",
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "string",
+      "additionalProperties": false,
+      "additionalItems": false,
+      "properties": {
+        "links": {
+          "title": "Links from Method"
+        }
+      },
+      "enum": [
+        "CREATE",
+        "DELETE",
+        "UPDATE",
+        "READ"
+      ]
+    },
+    "Domain": {
+      "title": "Domain",
+      "description": "The list of IAA high level domains.A source reference is required. AAM, CLM, CMM, CIM, FTM, PMM, PLM, VHM, RTM, UWM, RIM, PLA, PDC, BDM, LCM, PVM,",
+      "javaType": "nz.co.iag.model.consumer.json.Domain",
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "string",
+      "additionalProperties": false,
+      "additionalItems": false,
+      "properties": {
+        "links": {
+          "title": "Links from Domain"
+        }
+      },
+      "enum": [
+        "AAM",
+        "CLM",
+        "CMM",
+        "CIM",
+        "FTM",
+        "PMM",
+        "PLM",
+        "VHM",
+        "RTM",
+        "UWM",
+        "RIM",
+        "PLA",
+        "PDC",
+        "BDM",
+        "LCM",
+        "PVM"
+      ]
+    },
+    "LineOfBusiness": {
+      "title": "LineOfBusiness",
+      "description": " DIRECT[Direct Insurance\r\n], INTERMEDIATED[Intermediated Insurance\r\n], ANY[Any line of business],",
+      "javaType": "nz.co.iag.model.consumer.json.LineOfBusiness",
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "string",
+      "additionalProperties": false,
+      "additionalItems": false,
+      "properties": {
+        "links": {
+          "title": "Links from LineOfBusiness"
+        }
+      },
+      "enum": [
+        "DIRECT",
+        "INTERMEDIATED",
+        "ANY"
+      ]
+    },
+    "Brand": {
+      "title": "Brand",
+      "description": " AMI, STATE, NZI, ANY[Information which is across or not specific to  a particular brand], ASB[Information which is related to the ASB Intermediated channel], BNZ[Information which is related to the BNZ intermediated channel], COOPERATIVE[Information related to the Co-operative Bank intemediated channel\r\n],",
+      "javaType": "nz.co.iag.model.consumer.json.Brand",
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "string",
+      "additionalProperties": false,
+      "additionalItems": false,
+      "properties": {
+        "links": {
+          "title": "Links from Brand"
+        }
+      },
+      "enum": [
+        "AMI",
+        "STATE",
+        "NZI",
+        "ANY",
+        "ASB",
+        "BNZ",
+        "COOPERATIVE"
+      ]
+    },
+    "ClassOfBusiness": {
+      "title": "ClassOfBusiness",
+      "description": " HOME, CONTENT, MOTOR, ANY,",
+      "javaType": "nz.co.iag.model.consumer.json.ClassOfBusiness",
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "string",
+      "additionalProperties": false,
+      "additionalItems": false,
+      "properties": {
+        "links": {
+          "title": "Links from ClassOfBusiness"
+        }
+      },
+      "enum": [
+        "HOME",
+        "CONTENT",
+        "MOTOR",
+        "ANY"
+      ]
+    },
+    "Version": {
+      "title": "Version",
+      "description": " IAGIAA_2[The message is version 2 of the IAGIAA  [http://www.iag.co.nz/soa/iagiaa/v2]], ANY[Any version], TOWER_DOCUMENT[A VRD formatted message], IAGIAA_1[The message is version 2 of the IAGIAA  [http://www.iag.co.nz/soa/iagiaa/v2]], WEBAPI_1,",
+      "javaType": "nz.co.iag.model.consumer.json.Version",
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "string",
+      "additionalProperties": false,
+      "additionalItems": false,
+      "properties": {
+        "links": {
+          "title": "Links from Version"
+        }
+      },
+      "enum": [
+        "IAGIAA_2",
+        "ANY",
+        "TOWER_DOCUMENT",
+        "IAGIAA_1",
+        "WEBAPI_1"
+      ]
+    },
+    "MessageHeader": {
+      "title": "MessageHeader",
+      "description": " TRANSACTION_CORRELATION_ID[Header whose value is intended to be the assigned from the MULE_CORRELATION_ID for web apis.], OAUTH[An OAuth Token], JWT[A JWT Token\r\n],",
+      "javaType": "nz.co.iag.model.consumer.json.MessageHeader",
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "string",
+      "additionalProperties": false,
+      "additionalItems": false,
+      "properties": {
+        "links": {
+          "title": "Links from MessageHeader"
+        }
+      },
+      "enum": [
+        "TRANSACTION_CORRELATION_ID",
+        "OAUTH",
+        "JWT"
+      ]
+    },
+    "Command": {
+      "$ref": "#"
+    },
+    "MessageProperty": {
+      "title": "MessageProperty",
+      "description": "",
+      "javaType": "nz.co.iag.model.consumer.json.MessageProperty",
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "name": {
+          "$ref": "#/definitions/MessageHeader"
+        },
+        "links": {
+          "title": "Links from MessageProperty"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "description": "The id associated with a single command.",
+      "type": "string"
+    },
+    "message": {
+      "description": "Payload",
+      "type": "string"
+    },
+    "publisherServiceName": {
+      "description": "Name of the service publishing the command",
+      "type": "string"
+    },
+    "processorServiceName": {
+      "description": "Name of the command processor service",
+      "type": "string"
+    },
+    "responseMessage": {
+      "description": "Response returned after processing the command, this can also be a error response",
+      "type": "string"
+    },
+    "correlationId": {
+      "description": "An identifier which allows traceability across a number of apis call. This supports tracing a single high level transaction across multiple api calls.",
+      "type": "string"
+    },
+    "headers": {
+      "description": "",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/MessageProperty"
+      }
+    },
+    "version": {
+      "$ref": "#/definitions/Version"
+    },
+    "classOfBusiness": {
+      "$ref": "#/definitions/ClassOfBusiness"
+    },
+    "brand": {
+      "$ref": "#/definitions/Brand"
+    },
+    "lineOfBusiness": {
+      "$ref": "#/definitions/LineOfBusiness"
+    },
+    "domain": {
+      "$ref": "#/definitions/Domain"
+    },
+    "method": {
+      "$ref": "#/definitions/Method"
+    },
+    "requestPattern": {
+      "$ref": "#/definitions/RequestPatternType"
+    },
+    "resource": {
+      "$ref": "#/definitions/Resource"
+    },
+    "status": {
+      "$ref": "#/definitions/CommandStatus"
+    },
+    "links": {
+      "title": "Links from Command"
+    }
+  }
+}

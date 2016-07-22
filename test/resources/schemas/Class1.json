@@ -1,0 +1,54 @@
+{
+  "title": "Class1",
+  "description": "",
+  "javaType": "nz.co.iag.model.consumer.json.Class1",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "definitions": {
+    "Class2": {
+      "title": "Class2",
+      "description": "",
+      "javaType": "nz.co.iag.model.consumer.json.Class2",
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "clazz3": {
+          "title": "Class3",
+          "description": "",
+          "javaType": "nz.co.iag.model.consumer.json.Class3",
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "clazz1": {
+              "description": "",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Class2"
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "clazz3"
+      ]
+    },
+    "Class3": {
+      "$ref": "#/definitions/Class2/properties/clazz3"
+    },
+    "Class1": {
+      "$ref": "#"
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "clazz2": {
+      "$ref": "#/definitions/Class2"
+    }
+  },
+  "required": [
+    "clazz2"
+  ]
+}

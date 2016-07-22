@@ -1,0 +1,23 @@
+/* {{{description}}} */
+public class  {{title}}  {
+  {{#if enum}}
+    {{#each enum}}
+      {{this}}
+    {{/each}}
+  {{else}}
+    {{#each properties}}
+
+     private {{propertyType this}} {{@key}};
+
+      /* {{this.description}} */
+      public {{propertyType this}} get{{pascalCase @key}}(){
+        return {{@key}}
+      }
+
+      public {{propertyType this}} set{{pascalCase @key}}( t{{@key}} ) {
+        {{@key}} = t{{@key}};
+      }
+
+    {{/each}}
+  {{/if}}
+}

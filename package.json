@@ -1,0 +1,62 @@
+{
+  "name": "jsonschema2class",
+  "version": "1.0.0",
+  "description": "This functionality will generate plain old c# and java source files corresponding to a jsonschema",
+  "main": "index.js",
+  "files": [
+    "dist/"
+  ],
+  "watch": {
+    "w": {
+      "patterns": [
+        "src",
+        "test"
+      ],
+      "extensions": "js,jsx,hbs,ts"
+    }
+  },
+  "scripts": {
+    "lint": "# tslint \"src/**/*.ts\"",
+    "typings": "typings",
+    "build": "rm -rf dist/ && tsc",
+    "debug": "node --debug-brk  dist/bin.js /home/phil/iag/generated/MOM/target/api/api.raml -o /home/phil/iag/generated/MOM/target/runnable-doc",
+    "w": "clear  && tsc && DEBUG=jsonscshema2class node dist/bin.js -c -j -n foo.TestNamespace -i ./test/resources/schemas -o /tmp/gen",
+    "watch": "npm-watch"
+  },
+  "keywords": [
+    "c#",
+    "java",
+    "java bean",
+    "pojo",
+    "poco",
+    "jsonschema"
+  ],
+  "author": "Phil Tomlinson",
+  "devDependencies": {
+    "blue-tape": "^0.2.0",
+    "browserify": "^13.0.0",
+    "envify": "^3.4.0",
+    "express": "^4.12.3",
+    "istanbul": "^1.0.0-alpha.2",
+    "methods": "^1.1.2",
+    "nock": "^7.5.0",
+    "sinon": "^1.16.1",
+    "tap-spec": "^4.1.1",
+    "tape-run": "^2.1.0",
+    "typescript": "^1.8.9",
+    "typings": "^0.7.9"
+  },
+  "dependencies": {
+    "camel-case": "^1.2.2",
+    "change-case": "^2.3.1",
+    "debug": "^2.2.0",
+    "handlebars": "^4.0.5",
+    "javascript-stringify": "^1.0.2",
+    "marked": "^0.3.5",
+    "param-case": "^1.1.2",
+    "pascal-case": "^1.1.2",
+    "strands": "^1.0.1",
+    "uniqueid": "^1.0.0",
+    "xtend": "^4.0.1"
+  }
+}
