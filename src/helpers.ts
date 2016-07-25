@@ -122,6 +122,18 @@ export const helpers = {
     //console.log("aaaaaaaaaaaaaaaaaaaaaas");
     //console.log(j);
     return JSON.stringify(j);
+  },
+
+  required: function(property: any, cl: any) {
+    if(!cl.hasOwnProperty('required')){
+      return "false";
+    }
+    for(var i=0;i<cl.required.length;i++){
+      if (cl.required[i] == property.name){
+        return "true";
+      }
+    }
+    return "false";
   }
 };
 

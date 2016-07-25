@@ -1,23 +1,39 @@
-/* {{{description}}} */
+{{#if enum}}
+public enum {{title}}  {
+  {{#each enum}}
+    {{this}}("{{this}}"),
+  {{/each}};
+
+  private String value;
+
+  private {{title}}(String value) {
+       this.value = value;
+   }
+
+ @Override
+ public String toString() {
+     return this.value;
+ }
+ }
+{{else}}
 public class  {{title}}  {
-  {{#if enum}}
-    {{#each enum}}
-      {{this}}
-    {{/each}}
-  {{else}}
+
     {{#each properties}}
-
      private {{propertyType this}} {{@key}};
+    {{/each}}
 
+    {{#each properties}}
       /* {{this.description}} */
+      @XmlElement(required = {{required this ..}})
+      @JsonProperty(required = {{required this ..}})
       public {{propertyType this}} get{{pascalCase @key}}(){
-        return {{@key}}
+        return {{@key}};
       }
 
-      public {{propertyType this}} set{{pascalCase @key}}( t{{@key}} ) {
+      public void set{{pascalCase @key}}( {{propertyType this}} t{{@key}} ) {
         {{@key}} = t{{@key}};
       }
 
     {{/each}}
+  }
   {{/if}}
-}

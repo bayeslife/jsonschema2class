@@ -20,7 +20,7 @@
     "typings": "typings",
     "build": "rm -rf dist/ && tsc",
     "debug": "node --debug-brk  dist/bin.js /home/phil/iag/generated/MOM/target/api/api.raml -o /home/phil/iag/generated/MOM/target/runnable-doc",
-    "w": "clear  && tsc && DEBUG=jsonscshema2class node dist/bin.js -c -j -n foo.TestNamespace -i ./test/resources/schemas -o /tmp/gen",
+    "w": "clear  && tsc && DEBUG=jsonscshema2class node dist/bin.js -c -j -n foo.TestNamespace -i ./test/resources/schemas -o ./build/src/main",
     "watch": "npm-watch"
   },
   "keywords": [

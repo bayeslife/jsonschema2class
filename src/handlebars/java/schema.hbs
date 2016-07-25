@@ -1,10 +1,29 @@
 //Note this is a generated class and should not be edited
+package  {{namespace}};
 
-include;
+import javax.annotation.Generated;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-package  {{namespace}}
-{
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import java.io.Serializable;
+import java.util.List;
+
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+/* {{{description}}} */
+@XmlRootElement(namespace = "http://{{namespace}}")
+@XmlType(namespace = "http://{{namespace}}")
+@JsonAutoDetect
+@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 {{#with schema}}
-{{> java/schematype.hbs this}}
+{{> java/schematype.hbs this package="pjt"}}
 {{/with}}
-}

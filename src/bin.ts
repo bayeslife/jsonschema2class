@@ -119,7 +119,7 @@ function addType(schematype: any,alltypes: any,location: string){
   if(schematype.type=='object'){
     alltypes[location] = { namespace: args['n'], ref: location, type: schematype.title, schema: schematype};
   }else if(schematype.hasOwnProperty('enum'))  {
-    alltypes[location] = { ref: location, type: schematype.title, schema: schematype};;
+    alltypes[location] = { namespace: args['n'], ref: location, type: schematype.title, schema: schematype};;
   }
   for (var key in schematype) {
     if(typeof schematype[key] == 'object')
