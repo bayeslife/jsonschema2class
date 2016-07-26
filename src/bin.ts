@@ -159,7 +159,7 @@ function generateSchema(schemaname: string,schema: any, langs: string []) : Prom
 
 function saveGenerated(file: string,content:string, namespace: string, lang: string) : Promise<any> {
   return new Promise(function(res,rej){
-    var targetdir = pathModule.resolve(targetPath, lang, namespace.replace(".","/") );
+    var targetdir = pathModule.resolve(targetPath, lang, namespace.replace(/\./g,"/") );
     mkdirpthen(targetdir).then(function(){
       var filename = pathModule.resolve(targetdir, file+ "."+lang);
       debug("Saving:"+filename);
