@@ -1,14 +1,16 @@
 /* {{{description}}} */
+{{#if enum}}
+public enum  {{title}}  {
+  {{#each enum}}
+    {{this}},
+  {{/each}}
+{{else}}
 public class  {{title}}  {
-  {{#if enum}}
-    {{#each enum}}
-      {{this}}
-    {{/each}}
-  {{else}}
+
     {{#each properties}}
-    
+
       /* {{this.description}} */
-      public {{propertyType this}} {{@key}}   { get; set;}
+      public {{csharpPropertyType this}} {{@key}}   { get; set;}
 
 
     {{/each}}

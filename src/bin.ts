@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-var debug = require('debug')('jsonscshema2class');
+
 
 import bluebird = require('bluebird')
 import pathModule = require('path');
@@ -34,6 +34,8 @@ let mkdirpthen = thenify(mkdirp.mkdirp);
 let args: any = yargs
     .usage(pkg.description + "\n\n$0 --out [directory] --prefix [file prefix]")
     .version(pkg.version, 'version')
+    .alias('d', 'debug')
+    .describe('d', 'Enable debugging')
     .alias('c', 'csharp')
     .describe('c', 'Plain old c# sharp objects')
     .alias('j', 'java')
@@ -52,6 +54,11 @@ let args: any = yargs
     .alias('p', 'prefix')
     .describe('p', 'Prefix for all files produced')
     .parse(argv);
+
+if(args['d'])
+  process.env['DEBUG']=pkg.name;
+
+var debug = require('debug')(pkg.name);
 
 var cwd = process.cwd();
 
@@ -106,16 +113,41 @@ function loadschemas(files: string[]) : Promise<any> {
 function denormalize(schemaObjs: any []) : Promise<any>  {
   debug('denormalize')
   return new Promise(function(res,rej){
-    let alltypes = {};
+
     bluebird.map(schemaObjs,function(schemaObj: any){
+      let alltypes = {};
       addType(schemaObj,alltypes,'#');
+      schemaObj['alltypes']=alltypes;
     }).then(function(){
-      res(alltypes);
+      res(schemaObjs);
     })
   })
 }
 
-function addType(schematype: any,alltypes: any,location: string){
+// function denormalize(schemaObjs: any []) : Promise<any>  {
+//   debug('denormalize')
+//   return new Promise(function(res,rej){
+//     let alltypes = {};
+//     bluebird.map(schemaObjs,function(schemaObj: any){
+//       addRootType(schemaObj,alltypes);
+//     }).then(function(){
+//       res(alltypes);
+//     })
+//   })
+// }
+
+// function addRootType(schematype: any,alltypes: any){
+//   if(schematype.type=='object'){
+//     var location = '#';
+//     alltypes[location+schematype.title] = { namespace: args['n'], ref: location, type: schematype.title, schema: schematype};
+//   }
+//   for (var key in schematype) {
+//     if(typeof schematype[key] == 'object')
+//       addType(schematype[key],alltypes,"#/"+key);
+//   }
+// }
+
+function addType(schematype: any,alltypes: any, location: string){
   if(schematype.type=='object'){
     alltypes[location] = { namespace: args['n'], ref: location, type: schematype.title, schema: schematype};
   }else if(schematype.hasOwnProperty('enum'))  {
@@ -127,14 +159,34 @@ function addType(schematype: any,alltypes: any,location: string){
   }
 }
 
-function generate(alltypes: any) : Promise<any>  {
+// function generate(alltypes: any) : Promise<any>  {
+//   return new Promise(function(res,rej){
+//     bluebird.map(Object.keys(alltypes),function(key: string){
+//       hlprs.setReferences(alltypes);
+//       generateSchema(key,alltypes[key],langs).then(function(contents){
+//         for(var i=0;i<contents.length;i++){
+//           saveGenerated(alltypes[key].type,contents[i].content,contents[i].namespace,contents[i].lang);
+//         }
+//       });
+//     }).then(function(){
+//       res();
+//     })
+//   })
+// }
+
+function generate(schemaobjs: any) : Promise<any>  {
   return new Promise(function(res,rej){
-    bluebird.map(Object.keys(alltypes),function(key: string){
-      hlprs.setReferences(alltypes);
-      generateSchema(key,alltypes[key],langs).then(function(contents){
-        for(var i=0;i<contents.length;i++){
-          saveGenerated(alltypes[key].type,contents[i].content,contents[i].namespace,contents[i].lang);
-        }
+    bluebird.mapSeries(schemaobjs,function(schemaobj: any){
+      return bluebird.mapSeries(Object.keys(schemaobj.alltypes),function(key: string){
+        return new Promise(function(res2,rej2){
+          hlprs.setReferences(schemaobj.alltypes);
+          generateSchema(key,schemaobj.alltypes[key],langs).then(function(contents){
+            for(var i=0;i<contents.length;i++){
+              saveGenerated(schemaobj.alltypes[key].type,contents[i].content,contents[i].namespace,contents[i].lang);
+            }
+          });
+          res2();
+        })      
       });
     }).then(function(){
       res();

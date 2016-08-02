@@ -1,0 +1,83 @@
+{
+  "title": "Vehicle",
+  "description": "The representation of vehicle data.",
+  "javaType": "nz.co.iag.model.consumer.json.Vehicle",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "definitions": {},
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "coverType": {
+      "type": "string"
+    },
+    "registrationNumber": {
+      "type": "string"
+    },
+    "purposeOfUse": {
+      "type": "string"
+    },
+    "make": {
+      "type": "string"
+    },
+    "model": {
+      "type": "string"
+    },
+    "year": {
+      "type": "number"
+    },
+    "series": {
+      "type": "string"
+    },
+    "engineSize": {
+      "type": "string"
+    },
+    "bodyStyle": {
+      "type": "string"
+    },
+    "vehicleType": {
+      "type": "string"
+    },
+    "hasModification": {
+      "type": "boolean"
+    },
+    "hasAccessory": {
+      "type": "boolean"
+    },
+    "isVintage": {
+      "type": "boolean"
+    },
+    "hasOccasionalUse": {
+      "type": "boolean"
+    },
+    "fuelType": {
+      "type": "string"
+    },
+    "engineType": {
+      "type": "string"
+    },
+    "doors": {
+      "type": "string"
+    },
+    "engineCapacity": {
+      "type": "string"
+    },
+    "fullDescription": {
+      "type": "string"
+    },
+    "bodyType": {
+      "type": "string"
+    },
+    "mass": {
+      "type": "string"
+    },
+    "axels": {
+      "type": "number"
+    },
+    "vin": {
+      "type": "string"
+    }
+  }
+}

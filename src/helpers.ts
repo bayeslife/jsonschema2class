@@ -8,8 +8,13 @@ import changecase = require('change-case');
 
 let marked = require('marked');
 
+var jsesc = require('jsesc');
+
 import { csharp} from './csharp'
 let cs = new csharp();
+
+import { java} from './java'
+let javatype = new java();
 
 let markedRenderer = new marked.Renderer();
 
@@ -29,12 +34,19 @@ export const helpers = {
     console.log(val);
  },
 
+ escape: function(pat: string){
+   return jsesc(pat);
+ },
+
  setReferences: function(refs: any) {
    references = refs;
   },
 
  typeFromReference: function(ref: string) : string {
-   return references[ref].type;
+   if(references[ref])
+    return references[ref].type;
+  else
+    return "";
  },
 
  // isArray: function(type: string) {
@@ -43,9 +55,9 @@ export const helpers = {
  //  return "--";
  // },
 
- propertyType: function(schematype: any) : string {
+ csharpPropertyType: function(schematype: any) : string {
    if(schematype.type=='array' && schematype.items){
-     return helpers.propertyType(schematype.items)+ "[]";
+     return helpers.csharpPropertyType(schematype.items)+ "[]";
    }  else if(schematype['$ref']!=null){
      return references[schematype['$ref']].type;
    } else if(schematype.type=='object' && schematype.hasOwnProperty('title')){
@@ -54,6 +66,20 @@ export const helpers = {
      let t= schematype.type;
      return cs.typeToCSharpType(t);
    }
+  return "String";
+ },
+ 
+ javaPropertyType: function(schematype: any) : string {
+     if(schematype.type=='array' && schematype.items){
+       return helpers.javaPropertyType(schematype.items)+ "[]";
+     }  else if(schematype['$ref']!=null){
+       return references[schematype['$ref']].type;
+     } else if(schematype.type=='object' && schematype.hasOwnProperty('title')){
+       return schematype.title;
+     } else if(schematype.hasOwnProperty('type')){
+       let t= schematype.type;
+       return javatype.typeToJavaType(t);
+     }
   return "String";
  },
 

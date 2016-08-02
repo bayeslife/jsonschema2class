@@ -19,18 +19,21 @@ public enum {{title}}  {
 public class  {{title}}  {
 
     {{#each properties}}
-     private {{propertyType this}} {{@key}};
+     {{#if pattern}}
+     @Pattern(regexp = "{{{escape pattern}}}")
+     {{/if}}
+     private {{javaPropertyType this}} {{@key}};
     {{/each}}
 
     {{#each properties}}
       /* {{this.description}} */
       @XmlElement(required = {{required this ..}})
       @JsonProperty(required = {{required this ..}})
-      public {{propertyType this}} get{{pascalCase @key}}(){
+      public {{javaPropertyType this}} get{{pascalCase @key}}(){
         return {{@key}};
       }
 
-      public void set{{pascalCase @key}}( {{propertyType this}} t{{@key}} ) {
+      public void set{{pascalCase @key}}( {{javaPropertyType this}} t{{@key}} ) {
         {{@key}} = t{{@key}};
       }
 

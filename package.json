@@ -7,7 +7,7 @@
     "dist/"
   ],
   "watch": {
-    "w": {
+    "cdm": {
       "patterns": [
         "src",
         "test"
@@ -20,7 +20,8 @@
     "typings": "typings",
     "build": "rm -rf dist/ && tsc",
     "debug": "node --debug-brk  dist/bin.js /home/phil/iag/generated/MOM/target/api/api.raml -o /home/phil/iag/generated/MOM/target/runnable-doc",
-    "w": "clear  && tsc && DEBUG=jsonscshema2class node dist/bin.js -c -j -n foo.bar.TestNamespace -i ./test/resources/schemas -o ./build/src/main",
+    "w": "clear  && tsc && DEBUG=jsonschema2class node dist/bin.js -c -j -n foo.bar.TestNamespace -i ./test/resources/schemas -o ./build/src/main",
+    "cdm": "clear&& tsc && rm -rf /tmp/gen && node dist/bin.js -d -c -j -n foo.bar.TestNamespace -i /tmp/schemas -o /tmp/gen",
     "watch": "npm-watch"
   },
   "keywords": [
@@ -52,6 +53,7 @@
     "debug": "^2.2.0",
     "handlebars": "^4.0.5",
     "javascript-stringify": "^1.0.2",
+    "jsesc": "^2.2.0",
     "marked": "^0.3.5",
     "param-case": "^1.1.2",
     "pascal-case": "^1.1.2",
