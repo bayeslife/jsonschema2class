@@ -12,7 +12,7 @@ public enum {{title}}  {
             CONSTANTS.put(c.value, c);
         }
 	}
-	
+
 	private {{title}}(String value) {
 	   this.value = value;
 	}
@@ -21,7 +21,7 @@ public enum {{title}}  {
 	public String toString() {
 		return this.value;
 	}
- 
+
     @JsonCreator
     public static {{title}} fromValue(String value) {
         {{title}} constant = CONSTANTS.get(value);
@@ -31,7 +31,7 @@ public enum {{title}}  {
             return constant;
         }
     }
- 
+
  }
 {{else}}
 public class  {{title}}  {
@@ -40,18 +40,18 @@ public class  {{title}}  {
      {{#if pattern}}
      @Pattern(regexp = "{{{escape pattern}}}")
      {{/if}}
-     private {{javaPropertyType this}} {{@key}};
+     private {{{javaPropertyType this}}} {{@key}};
     {{/each}}
 
     {{#each properties}}
       /* {{this.description}} */
       @XmlElement(required = {{required this ..}})
       @JsonProperty(required = {{required this ..}})
-      public {{javaPropertyType this}} get{{@key}}(){
+      public {{{javaPropertyType this}}} get{{methodCase @key}}(){
         return {{@key}};
       }
 
-      public void set{{@key}}( {{javaPropertyType this}} t{{@key}} ) {
+      public void set{{methodCase @key}}( {{{javaPropertyType this}}} t{{@key}} ) {
         {{@key}} = t{{@key}};
       }
 
