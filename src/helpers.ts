@@ -22,6 +22,11 @@ let references : any = {};
 
 export const helpers = {
 
+
+  methodCase: function(val: string) {
+      return val.charAt(0).toUpperCase()+ val.slice(1);
+  },
+
   paramCase: function(val: string) {
       return paramCase(val);
   },
@@ -68,13 +73,15 @@ export const helpers = {
    }
   return "String";
  },
- 
+
  javaPropertyType: function(schematype: any) : string {
      if(schematype.type=='array' && schematype.items){
-       return helpers.javaPropertyType(schematype.items)+ "[]";
+       return "List<"+helpers.javaPropertyType(schematype.items)+ ">";
      }  else if(schematype['$ref']!=null){
        return references[schematype['$ref']].type;
      } else if(schematype.type=='object' && schematype.hasOwnProperty('title')){
+       return schematype.title;
+     } else if(schematype.hasOwnProperty('enum')){
        return schematype.title;
      } else if(schematype.hasOwnProperty('type')){
        let t= schematype.type;
