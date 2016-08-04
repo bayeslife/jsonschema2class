@@ -90,6 +90,14 @@ export const helpers = {
   return "String";
  },
 
+ javaPropertyInitializer: function(schematype: any) : string {
+     if(schematype.type=='array' && schematype.items){
+       return "new ArrayList<"+helpers.javaPropertyType(schematype.items)+ ">()";
+     } else {
+        return "null";
+     }
+ },
+
   documentationDescription: function(val: string,content: string) {
    if(val=='Description')
       return content;
