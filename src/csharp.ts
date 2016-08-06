@@ -4,7 +4,7 @@ export class csharp {
         if(schematype=='string')
           return 'String';
         if(schematype=='boolean')
-            return 'Bool';
+            return 'bool';
         if(schematype=='number')
             return 'double';
         else
