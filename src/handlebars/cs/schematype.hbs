@@ -2,7 +2,9 @@
 {{#if enum}}
 public enum  {{title}}  {
   {{#each enum}}
+    [EnumMember(Value="{{this}}")]
     {{this}},
+
   {{/each}}
 {{else}}
 public class  {{title}}  {
