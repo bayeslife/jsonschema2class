@@ -1,7 +1,6 @@
 {
   "title": "Vehicle",
   "description": "The representation of vehicle data.",
-  "javaType": "nz.co.iag.model.consumer.json.Vehicle",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "definitions": {},
   "type": "object",

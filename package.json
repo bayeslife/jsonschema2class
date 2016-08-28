@@ -19,8 +19,7 @@
     "lint": "# tslint \"src/**/*.ts\"",
     "typings": "typings",
     "build": "rm -rf dist/ && tsc",
-    "debug": "node --debug-brk  dist/bin.js /home/phil/iag/generated/MOM/target/api/api.raml -o /home/phil/iag/generated/MOM/target/runnable-doc",
-    "w": "clear  && tsc && DEBUG=jsonschema2class node dist/bin.js -c -j -n foo.bar.TestNamespace -i ./test/resources/schemas -o ./build/src/main",
+    "sample": "clear  && tsc && DEBUG=jsonschema2class node dist/bin.js -c -j -n foo.bar.TestNamespace -i ./test/resources/schemas -o ./build/src/main",
     "cdm": "clear&& tsc && rm -rf /tmp/gen && node dist/bin.js -d -c -j -n foo.bar.TestNamespace -i /tmp/schemas -o /tmp/gen",
     "watch": "npm-watch"
   },

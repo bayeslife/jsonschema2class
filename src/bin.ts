@@ -37,15 +37,15 @@ let args: any = yargs
     .alias('d', 'debug')
     .describe('d', 'Enable debugging')
     .alias('c', 'csharp')
-    .describe('c', 'Plain old c# sharp objects')
+    .describe('c', 'Generate plain old c# sharp objects')
     .alias('j', 'java')
-    .describe('j', 'Plain old java objects')
+    .describe('j', 'Generate plain old java objects')
     .demand('i')
     .alias('i', 'in')
-    .describe('i', 'In directory')
+    .describe('i', 'In directory containing any number of schema files')
     .demand('o')
     .alias('o', 'out')
-    .describe('o', 'Out directory')
+    .describe('o', 'Out directory where the generated files should go')
     .demand('n')
     .alias('n', 'namespace')
     .describe('n', 'namespace')
@@ -186,7 +186,7 @@ function generate(schemaobjs: any) : Promise<any>  {
             }
           });
           res2();
-        })      
+        })
       });
     }).then(function(){
       res();
