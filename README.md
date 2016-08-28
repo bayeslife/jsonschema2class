@@ -11,12 +11,15 @@ dist/bin.js --out [directory] --prefix [file prefix]
 Options:
   --version            Show version number                             [boolean]
   -d, --debug, --data  Path to JSON configuration file
-  -c, --csharp         Plain old c# sharp objects
-  -j, --java           Plain old java objects
-  -i, --in             In directory                                   [required]
-  -o, --out            Out directory                                  [required]
+  -c, --csharp         Generate plain old c# sharp objects
+  -j, --java           Generate plain old java objects
+  -i, --in             In directory containing any number of schema files
+                                                                      [required]
+  -o, --out            Out directory where the generated files should go
+                                                                      [required]
   -n, --namespace      namespace                                      [required]
   -p, --prefix         Prefix for all files produced
+
 ```
 
 ## Example
